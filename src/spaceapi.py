@@ -60,7 +60,8 @@ class SpaceApi(object):
 
 
     def open(self):
-        self.status['state']['open'] = True
+        self.status['state']['open'] = True 
+        #self.status['state']['open'] = False 
         self.update()
 
     def close(self):
@@ -72,12 +73,12 @@ class SpaceApi(object):
         with open(os.path.join('htdocs', self.fn), 'w') as out:
             json.dump(self.status, out)
 
-config_t21 = ConfigParser()
-config_t21.read('etc/spaceapi.ini')
+#config_t21 = ConfigParser()
+#config_t21.read('etc/spaceapi.ini')
 config_ebk = ConfigParser()
 config_ebk.read('etc/spaceapi_ebk.ini')
 
-T21 = SpaceApi(config_t21)
+#T21 = SpaceApi(config_t21)
 EBK = SpaceApi(config_ebk)
 
 
@@ -94,21 +95,27 @@ def mqtt_received(client, data, message):
     if payload == get_last_pl():
         return
     if payload == 'true':
-        T21.open()
+        #T21.open()
         EBK.open()
         telnet('SPACE OPEN')
     elif payload == 'false':
-        T21.close()
+        #T21.close()
         EBK.close()
         telnet('SPACE CLOSED')
     set_last_pl(payload)
 
+def on_connect(client, userdata, flags, rc):
+    if rc==0:
+        print("connected to mqtt")
+    	client.subscribe('space/status/open')
+    else:
+        print("Bad connection Returned code=",rc)
 
 def run():
     mqttc = mqtt.Client()
+    mqttc.on_connect = on_connect
     mqttc.connect('localhost')
     time.sleep(1)
-    mqttc.subscribe('space/status/open')
     mqttc.on_message = mqtt_received
     mqttc.loop_start()
     while 1:

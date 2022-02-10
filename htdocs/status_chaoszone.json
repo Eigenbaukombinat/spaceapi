@@ -1,0 +1,17 @@
+{
+"space": "ChaosZone",
+"url": "https://chaoszone.cz",
+"issue_report_channels": ["email"], 
+"contact": {
+	"email": "chaoszone@eigenbaukombinat.de"}, 
+"state": {
+	"open": false }, 
+"api": "0.13", 
+"location": {
+	"lat": 51.0826, "lon": -41.0019, "address": "Space"},
+"logo": "https://cfp.chaoszone.cz/media/csr20/img/chaoszone.png", 
+"feeds": {
+	"calendar": {
+		"url": "https://raw.githubusercontent.com/chaosz0ne/spaceapi/master/chaoszone.ics",
+		"type": "ical"}}
+}
