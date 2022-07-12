@@ -42,4 +42,9 @@ nosetests.xml
 .pydevproject
 include/
 
-/htdocs/status.json
+htdocs/status.json
+htdocs/openuntil.json
+htdocs/status_chaoszone.json
+htdocs/reminder.json
+.lastpl
+pyvenv.cfg

@@ -1,9 +1,9 @@
-from ConfigParser import ConfigParser
 import json
 import os
 import time
 import telnetlib
 import paho.mqtt.client as mqtt
+import configparser
 
 def telnet(txt):
     try:
@@ -21,7 +21,7 @@ def telnet(txt):
 class SpaceApi(object):
 
     def __init__(self, config):
-    	self.status = dict(api = '0.13',
+        self.status = dict(api = '0.13',
                   space = None,
                   logo = None,
                   url = None,
@@ -69,13 +69,13 @@ class SpaceApi(object):
         self.update()
 
     def update(self):
-        print 'updating'
+        print('updating')
         with open(os.path.join('htdocs', self.fn), 'w') as out:
             json.dump(self.status, out)
 
-#config_t21 = ConfigParser()
+#config_t21 = configparser.ConfigParser()
 #config_t21.read('etc/spaceapi.ini')
-config_ebk = ConfigParser()
+config_ebk = configparser.ConfigParser()
 config_ebk.read('etc/spaceapi_ebk.ini')
 
 #T21 = SpaceApi(config_t21)
@@ -107,11 +107,12 @@ def mqtt_received(client, data, message):
 def on_connect(client, userdata, flags, rc):
     if rc==0:
         print("connected to mqtt")
-    	client.subscribe('space/status/open')
+        client.subscribe('space/status/open')
     else:
         print("Bad connection Returned code=",rc)
 
-def run():
+def main():
+    print("connecting")
     mqttc = mqtt.Client()
     mqttc.on_connect = on_connect
     mqttc.connect('localhost')
@@ -122,3 +123,4 @@ def run():
         pass
         time.sleep(1)
 
+main()
