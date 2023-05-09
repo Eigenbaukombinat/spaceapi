@@ -7,10 +7,10 @@ import configparser
 
 def telnet(txt):
     try:
-        telnet = telnetlib.Telnet('192.168.21.148')
+        telnet = telnetlib.Telnet('192.168.22.101')
     except:
         print('Cannot connect to display, make sure it is on the '
-                      'network with IP 192.168.21.148')
+                      'network with IP 192.168.22.101')
         return
     telnet.write('\n\n'.encode('latin1'))
     telnet.write(chr(0x10).encode('latin1'))
@@ -35,7 +35,7 @@ class SpaceApi(object):
                           url='https://kalender.eigenbaukombinat.de/public/public.ics'),
                       blog = dict(
                           type='rss',
-                          url='https://eigenbaukombinat.de/feed/'),
+                          url='https://eigenbaukombinat.de/index.xml'),
                       ),
                   contact = dict(
                       email = None,
