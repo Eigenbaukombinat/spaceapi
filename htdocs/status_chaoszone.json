@@ -1,6 +1,7 @@
 {
 "space": "ChaosZone",
 "url": "https://chaoszone.cz",
+"ext_ccc": "habitat",
 "issue_report_channels": ["email"], 
 "contact": {
 	"email": "chaoszone@eigenbaukombinat.de"}, 
