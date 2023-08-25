@@ -1,1 +1,13 @@
-{"api": "0.13", "space": "Eigenbaukombinat Halle e.V.", "logo": "https://eigenbaukombinat.de/ebklogo.png", "url": "https://eigenbaukombinat.de", "location": {"address": "Landsberger Stra\u00dfe 3, 06112 Halle (Saale), Germany", "lon": 11.99221, "lat": 51.47996}, "feeds": {"calendar": {"type": "ical", "url": "https://kalender.eigenbaukombinat.de/public/public.ics"}, "blog": {"type": "rss", "url": "https://eigenbaukombinat.de/index.xml"}}, "contact": {"email": "kontakt@eigenbaukombinat.de", "ml": ""}, "state": {"icon": {"open": "", "closed": ""}, "open": false}, "issue_report_channels": ["email"]}
+{
+	"api": "0.13", 
+	"contact": {"email": "kontakt@eigenbaukombinat.de"}, 
+	"ext_ccc": "chaostreff", 
+	"ext_habitat": "chaoszone", 
+	"feeds": {"calendar": {"type": "ical", "url": "https://kalender.eigenbaukombinat.de/public/public.ics"}, "blog": {"type": "rss", "url": "https://eigenbaukombinat.de/index.xml"}}, 
+	"issue_report_channels": ["email"],
+	"location": {"address": "Landsberger Stra\u00dfe 3, 06112 Halle (Saale), Germany", "lon": 11.99221, "lat": 51.47996}, 
+	"logo": "https://eigenbaukombinat.de/ebklogo.png", 
+	"space": "Eigenbaukombinat Halle e.V.", 
+	"state": {"icon": {"open": "", "closed": ""}, "open": false}, 
+	"url": "https://eigenbaukombinat.de" 
+}
