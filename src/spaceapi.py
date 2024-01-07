@@ -1,21 +1,9 @@
 import json
 import os
 import time
-import telnetlib
 import paho.mqtt.client as mqtt
 import configparser
 
-def telnet(txt):
-    try:
-        telnet = telnetlib.Telnet('192.168.22.101')
-    except:
-        print('Cannot connect to display, make sure it is on the '
-                      'network with IP 192.168.22.101')
-        return
-    telnet.write('\n\n'.encode('latin1'))
-    telnet.write(chr(0x10).encode('latin1'))
-    telnet.write(chr(0).encode('latin1'))
-    telnet.write(txt.encode('latin1'))
 
 
 class SpaceApi(object):
@@ -97,11 +85,9 @@ def mqtt_received(client, data, message):
     if payload == 'true':
         #T21.open()
         EBK.open()
-        telnet('SPACE OPEN')
     elif payload == 'false':
         #T21.close()
         EBK.close()
-        telnet('SPACE CLOSED')
     set_last_pl(payload)
 
 def on_connect(client, userdata, flags, rc):
@@ -112,10 +98,14 @@ def on_connect(client, userdata, flags, rc):
         print("Bad connection Returned code=",rc)
 
 def main():
-    print("connecting")
+    import argparse
+    parser = argparse.ArgumentParser(description='EBK space api status')
+    parser.add_argument('--mqtt_broker', dest='mqtt_broker', default='localhost', help='Hostname/IP of the mqtt server (default:localhost).')
+    config = parser.parse_args()
+    print(f"connecting to {config.mqtt_broker}")
     mqttc = mqtt.Client()
     mqttc.on_connect = on_connect
-    mqttc.connect('localhost')
+    mqttc.connect(config.mqtt_broker)
     time.sleep(1)
     mqttc.on_message = mqtt_received
     mqttc.loop_start()

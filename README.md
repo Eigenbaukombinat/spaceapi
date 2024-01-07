@@ -13,7 +13,7 @@ To run via supervisor, create `/etc/supervisor/conf.d/spaceapi.conf` with this:
 
 ```
 [program:spaceapi]
-command = <home>/spaceapi/bin/python src/spaceapi.py
+command = <home>/spaceapi/bin/python src/spaceapi.py --mqtt_broker=<mqtt host>
 process_name = spaceapi
 directory = <home>/spaceapi
 priority = 10
