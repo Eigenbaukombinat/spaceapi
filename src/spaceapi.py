@@ -58,7 +58,7 @@ class SpaceApi(object):
 
     def update(self):
         print('updating')
-        with open(os.path.join('htdocs', self.fn), 'w') as out:
+        with open('..', os.path.join('htdocs', self.fn), 'w') as out:
             json.dump(self.status, out)
 
 #config_t21 = configparser.ConfigParser()
