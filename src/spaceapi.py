@@ -34,6 +34,7 @@ class SpaceApi(object):
                           open = None,
                           closed = None),
                       open = False),
+                  ext_ccc = 'chaostreff',
                   ext_habitat = 'chaoszone')
         
         self.status['space'] = config.get('space', 'space')
