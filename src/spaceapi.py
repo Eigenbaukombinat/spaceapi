@@ -9,7 +9,7 @@ import configparser
 class SpaceApi(object):
 
     def __init__(self, config):
-        self.status = dict(api = '0.13',
+        self.status = dict(api_compatibility = ['15'],
                   space = None,
                   logo = None,
                   url = None,
@@ -27,13 +27,16 @@ class SpaceApi(object):
                       ),
                   contact = dict(
                       email = None,
+                      issue_mail = None,
                       ml = None),
                   state = dict(
                       icon = dict(
                           open = None,
                           closed = None),
                       open = False),
-                  issue_report_channels = ['email'])
+                  ext_ccc = 'chaostreff',
+                  ext_habitat = 'chaoszone')
+        
         self.status['space'] = config.get('space', 'space')
         self.status['logo'] = config.get('space', 'logo')
         self.status['url'] = config.get('space', 'url')
@@ -41,6 +44,7 @@ class SpaceApi(object):
         self.status['location']['lon'] = config.getfloat('space', 'lon')
         self.status['location']['lat'] = config.getfloat('space', 'lat')
         self.status['contact']['email'] = config.get('space', 'email')
+        self.status['contact']['issue_mail'] = config.get('space', 'email')
         self.status['contact']['ml'] = config.get('space', 'ml')
         self.status['state']['icon']['open'] = config.get('space', 'open')
         self.status['state']['icon']['closed'] = config.get('space', 'closed')
